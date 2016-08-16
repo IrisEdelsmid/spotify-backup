@@ -135,7 +135,7 @@ def main():
 	if args.token:
 		spotify = SpotifyAPI(args.token)
 	else:
-		spotify = SpotifyAPI.authorize(client_id='5c098bcc800e45d49e476265bc9b6934', scope='playlist-read-private')
+		spotify = SpotifyAPI.authorize(client_id='5c098bcc800e45d49e476265bc9b6934', scope='user-follow-read user-library-read playlist-read-private playlist-read-collaborative')
 
 	# Get the ID of the logged in user.
 	me = spotify.get('me')
