@@ -13,6 +13,7 @@ import urllib.parse
 import urllib.request
 import webbrowser
 import xspf
+from slugify import slugify
 
 class SpotifyAPI:
 
@@ -142,16 +143,26 @@ def main():
 	log('Logged in as {display_name} ({id})'.format(**me))
 
 	# List all playlists and all track in each playlist.
-	playlists = spotify.list('users/{user_id}/playlists'.format(user_id=me['id']), {'limit': 50})
+	playlists = spotify.list('me/playlists', {'limit': 50})
 	for playlist in playlists:
 		log('Loading playlist: {name} ({tracks[total]} songs)'.format(**playlist))
 		playlist['tracks'] = spotify.list(playlist['tracks']['href'], {'limit': 100})
+
+	# Make a saved tracks playlist
+	saved_tracks = spotify.list('me/tracks', {'limit': 50})
+	log('Loading saved tracks...')
+
+	pp = {"id": "saved-tracks", "name": "Saved tracks", "tracks": []}
+	for track in saved_tracks:
+		pp["tracks"].append(track)
+
+	playlists.append(pp)
 
 	# Write the file.
 	if args.format == 'xspf':
 		log('Exporting playlist-specific files..')
 		for playlist in playlists:
-			f = open('playlist-' + playlist['id'] + '.xspf','w')
+			f = open('playlist-' + slugify(playlist['name'], to_lower=True) + '.xspf','w')
 			x = xspf.Xspf(title=playlist['name'])
 			for track in playlist['tracks']:
 				x.add_track(title=track['track']['name'], album=track['track']['album']['name'], creator=', '.join([artist['name'] for artist in track['track']['artists']]))
