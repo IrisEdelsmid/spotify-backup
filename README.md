@@ -14,3 +14,4 @@ Adding `--format=json` will give you a JSON dump with everything that the script
 Collaborative playlists and playlist folders don't show up in the API, sadly.
 
 *The [last version compatible with Python 2.7](https://raw.githubusercontent.com/bitsofpancake/spotify-backup/1f7e76a230e10910aa2cfa5d83ced4c271377af4/spotify-backup.py) probably still works.
+* Requirement: awesome-slugify from PIP
