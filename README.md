@@ -1,6 +1,10 @@
 spotify-backup
 ==============
 
+**This fork adds a --format=xspf command option to the original code.**
+
+**Using it will create multiple .xspf files with each playlist name and songs.**
+
 A Python 3* script that exports all of your Spotify playlists, useful for paranoid Spotify users like me, afraid that one day Spotify will go under and take all of our playlists with it!
 
 To run the script, [save it from here](https://raw.githubusercontent.com/bitsofpancake/spotify-backup/master/spotify-backup.py) and double-click it. It'll ask you for a filename and then pop open a web page so you can authorize access to the Spotify API. Then the script will load your playlists and save a tab-separated file with your playlists that you can open in Excel. You can even copy-paste the rows from Excel into a Spotify playlist.
