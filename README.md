@@ -1,9 +1,7 @@
 spotify-backup
 ==============
 
-**This fork adds a --format=xspf command option to the original code.**
-
-**Using it will create multiple .xspf files with each playlist name and songs.**
+**This fork adds a --format=xspf command option to the original code. Using it will create multiple .xspf files with each playlist name and songs.**
 
 A Python 3* script that exports all of your Spotify playlists, useful for paranoid Spotify users like me, afraid that one day Spotify will go under and take all of our playlists with it!
 
