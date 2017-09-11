@@ -162,7 +162,7 @@ def main():
 	if args.format == 'xspf':
 		log('Exporting playlist-specific files..')
 		for playlist in playlists:
-			f = open('playlist-' + slugify(playlist['name'], to_lower=True) + '.xspf','w')
+			f = open('playlist-' + slugify(playlist['name']) + '.xspf','w')
 			x = xspf.Xspf(title=playlist['name'])
 			for track in playlist['tracks']:
 				x.add_track(title=track['track']['name'], album=track['track']['album']['name'], creator=', '.join([artist['name'] for artist in track['track']['artists']]))
