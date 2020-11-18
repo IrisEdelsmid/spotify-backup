@@ -142,11 +142,13 @@ def main():
 	me = spotify.get('me')
 	log('Logged in as {display_name} ({id})'.format(**me))
 
-	# List all playlists and all track in each playlist.
-	playlists = spotify.list('me/playlists', {'limit': 50})
+	# List all playlists and all trplaylistsack in each playlist.
+	playlists = spotify.list('me/', {'limit': 50})
 	for playlist in playlists:
 		log('Loading playlist: {name} ({tracks[total]} songs)'.format(**playlist))
 		playlist['tracks'] = spotify.list(playlist['tracks']['href'], {'limit': 100})
+		for track in playlist['tracks']:
+			track['tracks']['album'] = spotify.get(track['track']['album']['href'])
 
 	# Make a saved tracks playlist
 	saved_tracks = spotify.list('me/tracks', {'limit': 50})
